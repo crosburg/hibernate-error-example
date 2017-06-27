@@ -67,6 +67,11 @@ grails:
         defaultScope: singleton
     converters:
         encoding: UTF-8
+    gorm:
+        failOnError: true
+        multiTenancy:
+            mode: SCHEMA
+            tenantResolverClass: org.grails.datastore.mapping.multitenancy.web.CookieTenantResolver
 
 ---
 hibernate:
@@ -90,6 +95,9 @@ environments:
         dataSource:
             dbCreate: update
             url: jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+        dataSources:
+            vb:
+                url: jdbc:h2:mem:vbTestDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
     production:
         dataSource:
             dbCreate: none
